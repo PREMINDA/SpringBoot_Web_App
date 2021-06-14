@@ -1,6 +1,7 @@
 package com.example.SpringBoot_Web_App.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -13,7 +14,9 @@ public class Author {
     private String lastname;
 
     @ManyToMany(mappedBy = "authors")
-    private Set<Book> books;
+    private Set<Book> books = new HashSet<>();
+
+
 
     public Long getId() {
         return id;
@@ -23,13 +26,12 @@ public class Author {
         this.id = id;
     }
 
-    public Author() {
-    }
 
-    public Author(String firstname, String lastname, Set<Book> books) {
+
+    public Author(String firstname, String lastname) {
         this.firstname = firstname;
         this.lastname = lastname;
-        this.books = books;
+
     }
 
     public String getFirstname() {
